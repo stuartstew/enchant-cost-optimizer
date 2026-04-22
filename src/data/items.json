@@ -1,0 +1,199 @@
+[
+  {
+    "id": "helmet",
+    "enchants": [
+      "protection",
+      "projectile_protection",
+      "blast_protection",
+      "fire_protection",
+      "thorns",
+      "respiration",
+      "aqua_affinity",
+      "unbreaking",
+      "mending",
+      "vanishing_curse",
+      "binding_curse"
+    ]
+  },
+  {
+    "id": "chestplate",
+    "enchants": [
+      "protection",
+      "projectile_protection",
+      "blast_protection",
+      "fire_protection",
+      "thorns",
+      "unbreaking",
+      "mending",
+      "vanishing_curse",
+      "binding_curse"
+    ]
+  },
+  {
+    "id": "leggings",
+    "enchants": [
+      "protection",
+      "projectile_protection",
+      "blast_protection",
+      "fire_protection",
+      "thorns",
+      "swift_sneak",
+      "unbreaking",
+      "mending",
+      "vanishing_curse",
+      "binding_curse"
+    ]
+  },
+  {
+    "id": "boots",
+    "enchants": [
+      "protection",
+      "projectile_protection",
+      "blast_protection",
+      "fire_protection",
+      "feather_falling",
+      "thorns",
+      "depth_strider",
+      "frost_walker",
+      "soul_speed",
+      "unbreaking",
+      "mending",
+      "vanishing_curse",
+      "binding_curse"
+    ]
+  },
+  {
+    "id": "turtle_shell",
+    "enchants": [
+      "protection",
+      "projectile_protection",
+      "blast_protection",
+      "fire_protection",
+      "thorns",
+      "respiration",
+      "aqua_affinity",
+      "unbreaking",
+      "mending",
+      "vanishing_curse",
+      "binding_curse"
+    ]
+  },
+  {
+    "id": "elytra",
+    "enchants": ["unbreaking", "mending", "vanishing_curse", "binding_curse"]
+  },
+  {
+    "id": "sword",
+    "enchants": [
+      "sharpness",
+      "smite",
+      "bane_of_arthropods",
+      "looting",
+      "knockback",
+      "fire_aspect",
+      "sweeping_edge",
+      "unbreaking",
+      "mending",
+      "vanishing_curse"
+    ]
+  },
+  {
+    "id": "axe",
+    "enchants": [
+      "efficiency",
+      "fortune",
+      "silk_touch",
+      "sharpness",
+      "smite",
+      "bane_of_arthropods",
+      "unbreaking",
+      "mending",
+      "vanishing_curse"
+    ]
+  },
+  {
+    "id": "mace",
+    "enchants": [
+      "density",
+      "breach",
+      "smite",
+      "bane_of_arthropods",
+      "wind_burst",
+      "fire_aspect",
+      "unbreaking",
+      "mending",
+      "vanishing_curse"
+    ]
+  },
+  {
+    "id": "spear",
+    "enchants": [
+      "sharpness",
+      "smite",
+      "bane_of_arthropods",
+      "looting",
+      "knockback",
+      "fire_aspect",
+      "lunge",
+      "unbreaking",
+      "mending",
+      "vanishing_curse"
+    ]
+  },
+  {
+    "id": "trident",
+    "enchants": ["loyalty", "channeling", "riptide", "impaling", "unbreaking", "mending", "vanishing_curse"]
+  },
+  {
+    "id": "pickaxe",
+    "enchants": ["efficiency", "fortune", "silk_touch", "unbreaking", "mending", "vanishing_curse"]
+  },
+  {
+    "id": "shovel",
+    "enchants": ["efficiency", "fortune", "silk_touch", "unbreaking", "mending", "vanishing_curse"]
+  },
+  {
+    "id": "hoe",
+    "enchants": ["efficiency", "fortune", "silk_touch", "unbreaking", "mending", "vanishing_curse"]
+  },
+  {
+    "id": "bow",
+    "enchants": ["power", "punch", "flame", "infinity", "unbreaking", "mending", "vanishing_curse"]
+  },
+  {
+    "id": "shield",
+    "enchants": ["unbreaking", "mending", "vanishing_curse"]
+  },
+  {
+    "id": "crossbow",
+    "enchants": ["quick_charge", "multishot", "piercing", "unbreaking", "mending", "vanishing_curse"]
+  },
+  {
+    "id": "brush",
+    "enchants": ["unbreaking", "mending", "vanishing_curse"]
+  },
+  {
+    "id": "fishing_rod",
+    "enchants": ["lure", "luck_of_the_sea", "unbreaking", "mending", "vanishing_curse"]
+  },
+  {
+    "id": "shears",
+    "enchants": ["efficiency", "unbreaking", "mending", "vanishing_curse"]
+  },
+  {
+    "id": "flint_and_steel",
+    "enchants": ["unbreaking", "mending", "vanishing_curse"]
+  },
+  {
+    "id": "carrot_on_a_stick",
+    "enchants": ["unbreaking", "mending", "vanishing_curse"]
+  },
+  {
+    "id": "warped_fungus_on_a_stick",
+    "enchants": ["unbreaking", "mending", "vanishing_curse"]
+  },
+  {
+    "id": "carved_pumpkin",
+    "enchants": ["vanishing_curse", "binding_curse"]
+  }
+]

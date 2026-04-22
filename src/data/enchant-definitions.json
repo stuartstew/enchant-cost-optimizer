@@ -1,0 +1,260 @@
+[
+  {
+    "id": "protection",
+    "maxLevel": 4,
+    "multiplier": 1,
+    "incompatible": ["fire_protection", "blast_protection", "projectile_protection"]
+  },
+  {
+    "id": "fire_protection",
+    "maxLevel": 4,
+    "multiplier": 1,
+    "incompatible": ["protection", "blast_protection", "projectile_protection"]
+  },
+  {
+    "id": "feather_falling",
+    "maxLevel": 4,
+    "multiplier": 1,
+    "incompatible": []
+  },
+  {
+    "id": "blast_protection",
+    "maxLevel": 4,
+    "multiplier": 2,
+    "incompatible": ["protection", "fire_protection", "projectile_protection"]
+  },
+  {
+    "id": "projectile_protection",
+    "maxLevel": 4,
+    "multiplier": 1,
+    "incompatible": ["protection", "fire_protection", "blast_protection"]
+  },
+  {
+    "id": "thorns",
+    "maxLevel": 3,
+    "multiplier": 4,
+    "incompatible": []
+  },
+  {
+    "id": "respiration",
+    "maxLevel": 3,
+    "multiplier": 2,
+    "incompatible": []
+  },
+  {
+    "id": "depth_strider",
+    "maxLevel": 3,
+    "multiplier": 2,
+    "incompatible": ["frost_walker"]
+  },
+  {
+    "id": "aqua_affinity",
+    "maxLevel": 1,
+    "multiplier": 2,
+    "incompatible": []
+  },
+  {
+    "id": "sharpness",
+    "maxLevel": 5,
+    "multiplier": 1,
+    "incompatible": ["smite", "bane_of_arthropods"]
+  },
+  {
+    "id": "smite",
+    "maxLevel": 5,
+    "multiplier": 1,
+    "incompatible": ["sharpness", "bane_of_arthropods", "density", "breach"]
+  },
+  {
+    "id": "bane_of_arthropods",
+    "maxLevel": 5,
+    "multiplier": 1,
+    "incompatible": ["sharpness", "smite", "density", "breach"]
+  },
+  {
+    "id": "knockback",
+    "maxLevel": 2,
+    "multiplier": 1,
+    "incompatible": []
+  },
+  {
+    "id": "fire_aspect",
+    "maxLevel": 2,
+    "multiplier": 2,
+    "incompatible": []
+  },
+  {
+    "id": "looting",
+    "maxLevel": 3,
+    "multiplier": 2,
+    "incompatible": []
+  },
+  {
+    "id": "efficiency",
+    "maxLevel": 5,
+    "multiplier": 1,
+    "incompatible": []
+  },
+  {
+    "id": "silk_touch",
+    "maxLevel": 1,
+    "multiplier": 4,
+    "incompatible": ["fortune"]
+  },
+  {
+    "id": "unbreaking",
+    "maxLevel": 3,
+    "multiplier": 1,
+    "incompatible": []
+  },
+  {
+    "id": "fortune",
+    "maxLevel": 3,
+    "multiplier": 2,
+    "incompatible": ["silk_touch"]
+  },
+  {
+    "id": "power",
+    "maxLevel": 5,
+    "multiplier": 1,
+    "incompatible": []
+  },
+  {
+    "id": "punch",
+    "maxLevel": 2,
+    "multiplier": 2,
+    "incompatible": []
+  },
+  {
+    "id": "flame",
+    "maxLevel": 1,
+    "multiplier": 2,
+    "incompatible": []
+  },
+  {
+    "id": "infinity",
+    "maxLevel": 1,
+    "multiplier": 4,
+    "incompatible": ["mending"]
+  },
+  {
+    "id": "luck_of_the_sea",
+    "maxLevel": 3,
+    "multiplier": 2,
+    "incompatible": []
+  },
+  {
+    "id": "lure",
+    "maxLevel": 3,
+    "multiplier": 2,
+    "incompatible": []
+  },
+  {
+    "id": "frost_walker",
+    "maxLevel": 2,
+    "multiplier": 2,
+    "incompatible": ["depth_strider"]
+  },
+  {
+    "id": "mending",
+    "maxLevel": 1,
+    "multiplier": 2,
+    "incompatible": ["infinity"]
+  },
+  {
+    "id": "binding_curse",
+    "maxLevel": 1,
+    "multiplier": 4,
+    "incompatible": []
+  },
+  {
+    "id": "vanishing_curse",
+    "maxLevel": 1,
+    "multiplier": 4,
+    "incompatible": []
+  },
+  {
+    "id": "impaling",
+    "maxLevel": 5,
+    "multiplier": 2,
+    "incompatible": []
+  },
+  {
+    "id": "riptide",
+    "maxLevel": 3,
+    "multiplier": 2,
+    "incompatible": ["loyalty", "channeling"]
+  },
+  {
+    "id": "loyalty",
+    "maxLevel": 3,
+    "multiplier": 1,
+    "incompatible": ["riptide"]
+  },
+  {
+    "id": "channeling",
+    "maxLevel": 1,
+    "multiplier": 4,
+    "incompatible": ["riptide"]
+  },
+  {
+    "id": "multishot",
+    "maxLevel": 1,
+    "multiplier": 2,
+    "incompatible": ["piercing"]
+  },
+  {
+    "id": "piercing",
+    "maxLevel": 4,
+    "multiplier": 1,
+    "incompatible": ["multishot"]
+  },
+  {
+    "id": "quick_charge",
+    "maxLevel": 3,
+    "multiplier": 1,
+    "incompatible": []
+  },
+  {
+    "id": "soul_speed",
+    "maxLevel": 3,
+    "multiplier": 4,
+    "incompatible": []
+  },
+  {
+    "id": "swift_sneak",
+    "maxLevel": 3,
+    "multiplier": 4,
+    "incompatible": []
+  },
+  {
+    "id": "wind_burst",
+    "maxLevel": 3,
+    "multiplier": 2,
+    "incompatible": []
+  },
+  {
+    "id": "density",
+    "maxLevel": 5,
+    "multiplier": 1,
+    "incompatible": ["smite", "bane_of_arthropods", "breach"]
+  },
+  {
+    "id": "breach",
+    "maxLevel": 4,
+    "multiplier": 2,
+    "incompatible": ["smite", "bane_of_arthropods", "density"]
+  },
+  {
+    "id": "lunge",
+    "maxLevel": 3,
+    "multiplier": 1,
+    "incompatible": []
+  },
+  {
+    "id": "sweeping_edge",
+    "maxLevel": 3,
+    "multiplier": 2,
+    "incompatible": []
+  }
+]
