@@ -2,6 +2,15 @@
 
 A tool for Minecraft: Calculates the optimal order for combining enchantments on an anvil to save your XP.
 
+## How To Use
+
+1. Pick an item.
+2. Pick desired enchantments.
+3. Press the "Calculate" button to see the optimal order.
+
+> [!IMPORTANT]
+> This tool assumes all item and books start with **zero anvil uses**.
+
 ## Development
 
 ### Prerequisites
