@@ -41,7 +41,7 @@ export const Main = () => {
   };
 
   return (
-    <Container size="800">
+    <Container size="800" pt="lg" pb={100}>
       <Form loading={loading} onCalculate={handleCalculate} />
       <Result
         savedItem={savedItem}

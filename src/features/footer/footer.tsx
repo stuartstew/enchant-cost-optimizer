@@ -4,7 +4,7 @@ import { GithubLink } from "./github-link";
 
 export const Footer = () => {
   return (
-    <Group h="100%" px="sm" justify="space-between">
+    <Group h="100%" p="md" justify="space-between">
       <GithubLink />
       <Disclaimer />
     </Group>

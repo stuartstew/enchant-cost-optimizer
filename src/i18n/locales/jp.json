@@ -3,7 +3,7 @@
   "disclaimer": "Minecraft の公式のサービスではありません。Mojang または Microsoft から承認を受けておらず、それとの関連性もありません。",
   "github-link": "GitHub",
   "info": {
-    "description": "Minecraftで、金床でエンチャントを合成する際のコストを最適化するためのツールです。",
+    "description": "Minecraft で、金床でエンチャントを合成する際のコストを最適化するためのツールです。",
     "step1": "アイテムを選択してください。",
     "step2": "目的のエンチャントを選択してください。",
     "step3": "「計算する」ボタンを押すと、最適な合成順序が表示されます。",

@@ -5,13 +5,13 @@ import { Main } from "@/features/main";
 
 export const Shell = () => {
   return (
-    <AppShell padding="md" header={{ height: 60 }}>
+    <AppShell header={{ height: 60 }}>
       <AppShell.Header>
         <Header />
       </AppShell.Header>
       <AppShell.Main>
         <Main />
-        <Divider mt={100} mb={20} />
+        <Divider />
         <Footer />
       </AppShell.Main>
     </AppShell>

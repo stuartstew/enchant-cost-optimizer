@@ -7,7 +7,7 @@ type Props = {
 
 export const InfoButton = ({ onClick }: Props) => {
   return (
-    <ActionIcon variant="default" size="lg" aria-label="Pick Language" onClick={onClick}>
+    <ActionIcon variant="default" size="lg" aria-label="Show Info" onClick={onClick}>
       <IconInfoCircle style={{ height: "70%", width: "70%" }} stroke={1.5} />
     </ActionIcon>
   );
