@@ -40,6 +40,16 @@ const tooExpensiveCost = 40;
 
 const priorWorkPenalty = (anvilUseCount: number) => 2 ** anvilUseCount - 1;
 
+const computeMaxAnvilUseCount = (): number => {
+  let maxAnvilUseCount = 0;
+  while (priorWorkPenalty(maxAnvilUseCount) < tooExpensiveCost) {
+    maxAnvilUseCount++;
+  }
+  return maxAnvilUseCount;
+};
+
+const maxAnvilUseCount = computeMaxAnvilUseCount();
+
 /**
  * Builds the optimal sequence for applying all given enchantments to an item.
  * @param enchants - The enchantments applied to an item.
@@ -171,7 +181,6 @@ const minimumCostTable = (costs: number[]): DpTable => {
 const updateDpTable = (dp: DpTable, kind: "book" | "item", resultEnchantBitmask: number, costs: number[]) => {
   const target: InternalPiece = { ...defaultInternalPiece, kind };
   const sacrifice: InternalPiece = { ...defaultInternalPiece, kind: "book" };
-  const maxAnvilUseCount = computeMaxAnvilUseCount();
 
   for (target.enchantBitmask of powerSet(resultEnchantBitmask)) {
     sacrifice.enchantBitmask = resultEnchantBitmask & ~target.enchantBitmask;
@@ -214,14 +223,6 @@ const initializeDpTable = (n: number): DpTable => {
   dp.item[0][0] = { cumulativeCost: 0 };
 
   return dp;
-};
-
-const computeMaxAnvilUseCount = (): number => {
-  let maxAnvilUseCount = 0;
-  while (priorWorkPenalty(maxAnvilUseCount) < tooExpensiveCost) {
-    maxAnvilUseCount++;
-  }
-  return maxAnvilUseCount;
 };
 
 if (import.meta.vitest) {
