@@ -1,5 +1,12 @@
 {
   "title": "Enchantment Cost Optimizer",
+  "info": {
+    "description": "A Minecraft tool that helps you optimize the cost of combining enchantments using an anvil.",
+    "step1": "Pick an item.",
+    "step2": "Pick desired enchantments.",
+    "step3": "Press the 'Calculate' button to see the optimal order.",
+    "assumption": "IMPORTANT: This tool assumes all item and books start with <strong>zero anvil uses</strong>."
+  },
   "form": {
     "buttons": {
       "calculate": "Calculate"
