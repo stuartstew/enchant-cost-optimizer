@@ -1,5 +1,7 @@
 {
   "title": "エンチャント費用最適化ツール",
+  "disclaimer": "Minecraft の公式のサービスではありません。Mojang または Microsoft から承認を受けておらず、それとの関連性もありません。",
+  "github-link": "GitHub",
   "info": {
     "description": "Minecraftで、金床でエンチャントを合成する際のコストを最適化するためのツールです。",
     "step1": "アイテムを選択してください。",

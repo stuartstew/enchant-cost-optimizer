@@ -1,5 +1,7 @@
 {
   "title": "Enchantment Cost Optimizer",
+  "disclaimer": "NOT AN OFFICIAL MINECRAFT SERVICE. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.",
+  "github-link": "GitHub",
   "info": {
     "description": "A Minecraft tool that helps you optimize the cost of combining enchantments using an anvil.",
     "step1": "Pick an item.",

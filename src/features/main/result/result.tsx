@@ -1,4 +1,4 @@
-import { Text } from "@mantine/core";
+import { Divider, Text } from "@mantine/core";
 import { useTranslation } from "react-i18next";
 import type { Enchants } from "@/types/enchants";
 import type { OptimizationMode } from "@/types/optimization-mode";
@@ -33,6 +33,7 @@ export const Result = ({
   if (optimalSteps.length > 0) {
     return (
       <div>
+        <Divider my="xl" />
         <Text mb="xs" size="xl" fw={500}>
           {savedOptimizationMode === "level" ? t("result.optimalSolutionLevel") : t("result.optimalSolutionPriorWork")}
         </Text>
