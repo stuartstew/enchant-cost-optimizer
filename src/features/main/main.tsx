@@ -1,4 +1,4 @@
-import { Container, Divider } from "@mantine/core";
+import { Container } from "@mantine/core";
 import { useState } from "react";
 import type { Enchants } from "@/types/enchants";
 import type { OptimizationMode } from "@/types/optimization-mode";
@@ -43,7 +43,6 @@ export const Main = () => {
   return (
     <Container size="800">
       <Form loading={loading} onCalculate={handleCalculate} />
-      <Divider my="xl" />
       <Result
         savedItem={savedItem}
         savedEnchants={savedEnchants}
