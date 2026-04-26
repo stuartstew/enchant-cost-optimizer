@@ -178,6 +178,23 @@ const minimumCostTable = (costs: number[]): DpTable => {
   return dp;
 };
 
+const initializeDpTable = (n: number): DpTable => {
+  const dp = {
+    book: Array.from({ length: 1 << n }, (): (Solution | undefined)[] => []),
+    item: Array.from({ length: 1 << n }, (): (Solution | undefined)[] => []),
+  };
+
+  // Assuming you have enchanted books, each with single enchantment (with an anvil use count of 0),
+  for (const i of range(n)) {
+    dp.book[1 << i][0] = { cumulativeCost: 0 };
+  }
+
+  // and an unenchanted item (also with an anvil use count of 0).
+  dp.item[0][0] = { cumulativeCost: 0 };
+
+  return dp;
+};
+
 const updateDpTable = (dp: DpTable, kind: "book" | "item", resultEnchantBitmask: number, costs: number[]) => {
   const target: InternalPiece = { ...DEFAULT_INTERNAL_PIECE, kind };
   const sacrifice: InternalPiece = { ...DEFAULT_INTERNAL_PIECE, kind: "book" };
@@ -206,23 +223,6 @@ const updateDpTable = (dp: DpTable, kind: "book" | "item", resultEnchantBitmask:
       dp[kind][resultEnchantBitmask][resultAnvilUseCount] = { cumulativeCost, step };
     }
   }
-};
-
-const initializeDpTable = (n: number): DpTable => {
-  const dp = {
-    book: Array.from({ length: 1 << n }, (): (Solution | undefined)[] => []),
-    item: Array.from({ length: 1 << n }, (): (Solution | undefined)[] => []),
-  };
-
-  // Assuming you have enchanted books, each with single enchantment (with an anvil use count of 0),
-  for (const i of range(n)) {
-    dp.book[1 << i][0] = { cumulativeCost: 0 };
-  }
-
-  // and an unenchanted item (also with an anvil use count of 0).
-  dp.item[0][0] = { cumulativeCost: 0 };
-
-  return dp;
 };
 
 if (import.meta.vitest) {
