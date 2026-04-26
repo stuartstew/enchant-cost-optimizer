@@ -3,7 +3,7 @@ import type { Enchants } from "@/types/enchants";
 import type { OptimizationMode } from "@/types/optimization-mode";
 import type { Piece, Step } from "@/types/step";
 import { powerSet } from "./bitmask";
-import { cartesianSquare } from "./cartesian-product";
+import { cartesianProduct, cartesianSquare } from "./cartesian-product";
 import { min, range, sum } from "./common";
 
 type InternalStep = {
@@ -29,16 +29,26 @@ type DpTable = {
   item: (Solution | undefined)[][];
 };
 
-const defaultInternalPiece: InternalPiece = { kind: "book", enchantBitmask: 0, anvilUseCount: 0 };
+const DEFAULT_INTERNAL_PIECE: InternalPiece = { kind: "book", enchantBitmask: 0, anvilUseCount: 0 };
 
-const enchantMap = new Map(enchantDefinitions.map((enchant, i) => [enchant.id, { ...enchant, index: i }]));
+const ENCHANT_MAP = new Map(enchantDefinitions.map((enchant, i) => [enchant.id, { ...enchant, index: i }]));
 
 /**
  * The minimum cost that is rejected as "Too Expensive!" in an anvil.
  */
-const tooExpensiveCost = 40;
+const TOO_EXPENSIVE_COST = 40;
 
 const priorWorkPenalty = (anvilUseCount: number) => 2 ** anvilUseCount - 1;
+
+const computeMaxAnvilUseCount = (): number => {
+  let maxAnvilUseCount = 0;
+  while (priorWorkPenalty(maxAnvilUseCount) < TOO_EXPENSIVE_COST) {
+    maxAnvilUseCount++;
+  }
+  return maxAnvilUseCount;
+};
+
+const MAX_ANVIL_USE_COUNT = computeMaxAnvilUseCount();
 
 /**
  * Builds the optimal sequence for applying all given enchantments to an item.
@@ -59,14 +69,14 @@ export const buildEnchantPlan = (enchants: Enchants, optimizationMode: Optimizat
 };
 
 const rearrangeEnchants = (enchants: Enchants): { ids: string[]; costs: number[] } => {
-  if (Array.from(enchants.keys()).some((id) => !enchantMap.has(id))) {
-    const unknownEnchantId = Array.from(enchants.keys()).find((id) => !enchantMap.has(id));
+  if (Array.from(enchants.keys()).some((id) => !ENCHANT_MAP.has(id))) {
+    const unknownEnchantId = Array.from(enchants.keys()).find((id) => !ENCHANT_MAP.has(id));
     throw new Error(`unknown enchant id: ${unknownEnchantId}`);
   }
 
   const enchantDetails = Array.from(enchants.entries()).map(([id, level]) => {
     // biome-ignore lint/style/noNonNullAssertion: we have checked that the map has all given keys
-    return { enchant: enchantMap.get(id)!, level };
+    return { enchant: ENCHANT_MAP.get(id)!, level };
   });
 
   // Ensure that the order in which enchantments are selected does not affect the result
@@ -159,39 +169,10 @@ const reconstructOptimalSteps = (dp: DpTable, optimalSolution: Solution): Intern
 const minimumCostTable = (costs: number[]): DpTable => {
   const n = costs.length;
   const dp = initializeDpTable(n);
-  const maxAnvilUseCount = computeMaxAnvilUseCount();
-
-  const target: InternalPiece = { ...defaultInternalPiece };
-  const sacrifice: InternalPiece = { ...defaultInternalPiece, kind: "book" };
 
   const kinds: ("book" | "item")[] = ["book", "item"];
-  for (target.kind of kinds) {
-    for (const resultEnchantBitmask of range(1 << n)) {
-      for (target.enchantBitmask of powerSet(resultEnchantBitmask)) {
-        sacrifice.enchantBitmask = resultEnchantBitmask & ~target.enchantBitmask;
-        const enchantCostSum = sum(costs.filter((_, i) => sacrifice.enchantBitmask & (1 << i)));
-
-        for ([target.anvilUseCount, sacrifice.anvilUseCount] of cartesianSquare(range(maxAnvilUseCount))) {
-          const targetSolution = dp[target.kind][target.enchantBitmask][target.anvilUseCount];
-          const sacrificeSolution = dp.book[sacrifice.enchantBitmask][sacrifice.anvilUseCount];
-          if (targetSolution === undefined || sacrificeSolution === undefined) continue;
-
-          const operationCost =
-            enchantCostSum + priorWorkPenalty(target.anvilUseCount) + priorWorkPenalty(sacrifice.anvilUseCount);
-
-          if (operationCost >= tooExpensiveCost) continue;
-
-          const cumulativeCost = targetSolution.cumulativeCost + sacrificeSolution.cumulativeCost + operationCost;
-          const resultAnvilUseCount = Math.max(target.anvilUseCount, sacrifice.anvilUseCount) + 1;
-
-          const oldSolution = dp[target.kind][resultEnchantBitmask][resultAnvilUseCount];
-          if (oldSolution !== undefined && oldSolution.cumulativeCost <= cumulativeCost) continue;
-
-          const step = { target: { ...target }, sacrifice: { ...sacrifice }, operationCost, resultAnvilUseCount };
-          dp[target.kind][resultEnchantBitmask][resultAnvilUseCount] = { cumulativeCost, step };
-        }
-      }
-    }
+  for (const [kind, resultEnchantBitmask] of cartesianProduct(kinds, range(1 << n))) {
+    updateDpTable(dp, kind, resultEnchantBitmask, costs);
   }
 
   return dp;
@@ -214,12 +195,34 @@ const initializeDpTable = (n: number): DpTable => {
   return dp;
 };
 
-const computeMaxAnvilUseCount = (): number => {
-  let maxAnvilUseCount = 0;
-  while (priorWorkPenalty(maxAnvilUseCount) < tooExpensiveCost) {
-    maxAnvilUseCount++;
+const updateDpTable = (dp: DpTable, kind: "book" | "item", resultEnchantBitmask: number, costs: number[]) => {
+  const target: InternalPiece = { ...DEFAULT_INTERNAL_PIECE, kind };
+  const sacrifice: InternalPiece = { ...DEFAULT_INTERNAL_PIECE, kind: "book" };
+
+  for (target.enchantBitmask of powerSet(resultEnchantBitmask)) {
+    sacrifice.enchantBitmask = resultEnchantBitmask & ~target.enchantBitmask;
+    const enchantCostSum = sum(costs.filter((_, i) => sacrifice.enchantBitmask & (1 << i)));
+
+    for ([target.anvilUseCount, sacrifice.anvilUseCount] of cartesianSquare(range(MAX_ANVIL_USE_COUNT))) {
+      const targetSolution = dp[kind][target.enchantBitmask][target.anvilUseCount];
+      const sacrificeSolution = dp.book[sacrifice.enchantBitmask][sacrifice.anvilUseCount];
+      if (targetSolution === undefined || sacrificeSolution === undefined) continue;
+
+      const operationCost =
+        enchantCostSum + priorWorkPenalty(target.anvilUseCount) + priorWorkPenalty(sacrifice.anvilUseCount);
+
+      if (operationCost >= TOO_EXPENSIVE_COST) continue;
+
+      const cumulativeCost = targetSolution.cumulativeCost + sacrificeSolution.cumulativeCost + operationCost;
+      const resultAnvilUseCount = Math.max(target.anvilUseCount, sacrifice.anvilUseCount) + 1;
+
+      const oldSolution = dp[kind][resultEnchantBitmask][resultAnvilUseCount];
+      if (oldSolution !== undefined && oldSolution.cumulativeCost <= cumulativeCost) continue;
+
+      const step = { target: { ...target }, sacrifice: { ...sacrifice }, operationCost, resultAnvilUseCount };
+      dp[kind][resultEnchantBitmask][resultAnvilUseCount] = { cumulativeCost, step };
+    }
   }
-  return maxAnvilUseCount;
 };
 
 if (import.meta.vitest) {
