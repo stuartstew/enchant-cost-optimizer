@@ -12,7 +12,7 @@ beforeEach(() => {
 const user = userEvent.setup();
 
 describe("level toggle group", async () => {
-  it("should allow selecting items and enchantments", async () => {
+  it("should allow users to select items and enchantments", async () => {
     const { result } = renderHook(() => useSelector());
     const handleChangeItem = (value: string | null) => act(() => result.current.changeItem(value));
     const handleChangeEnchantment = (id: string, level: number) => act(() => result.current.changeEnchant(id, level));
