@@ -3,10 +3,10 @@ import { useState } from "react";
 import type { Enchants } from "@/types/enchants";
 import type { OptimizationMode } from "@/types/optimization-mode";
 import type { Step } from "@/types/step";
-import type { WorkerRequest, WorkerResponse } from "@/workers/types";
-import Worker from "@/workers/worker?worker";
 import { Form } from "./form";
 import { Result } from "./result";
+import type { WorkerRequest, WorkerResponse } from "./workers/types";
+import Worker from "./workers/worker?worker";
 
 export const Main = () => {
   const [savedItem, setSavedItem] = useState("");
