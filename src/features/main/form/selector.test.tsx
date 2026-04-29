@@ -57,4 +57,67 @@ describe("level toggle group", async () => {
     expect(result.current.enchants.size).toBe(1);
     expect(result.current.enchants.get("unbreaking")).toBe(3);
   });
+
+  it("should disable incompatible enchantments", async () => {
+    const { result } = renderHook(() => useSelector());
+    const handleChangeItem = (value: string | null) => act(() => result.current.changeItem(value));
+    const handleChangeEnchantment = (id: string, level: number) => act(() => result.current.changeEnchant(id, level));
+
+    const { rerender } = render(
+      <Selector
+        item={result.current.item}
+        enchants={result.current.enchants}
+        onChangeItem={handleChangeItem}
+        onChangeEnchant={handleChangeEnchantment}
+      />,
+    );
+
+    const itemSelector = screen.getByRole("textbox", { name: "form.itemSelector.label" });
+    await user.click(itemSelector);
+
+    const option = screen.getByRole("option", { name: "items.bow" });
+    await user.click(option);
+
+    expect(result.current.item).toBe("bow");
+
+    rerender(
+      <Selector
+        item={result.current.item}
+        enchants={result.current.enchants}
+        onChangeItem={handleChangeItem}
+        onChangeEnchant={handleChangeEnchantment}
+      />,
+    );
+
+    const rows = screen.getAllByRole("row");
+
+    const infinityRow = rows.find((row) => within(row).queryByText("enchants.infinity") != null);
+    expect(infinityRow).toBeDefined();
+    if (infinityRow === undefined) return; // Just to satisfy TypeScript
+
+    const infinityButton = within(infinityRow).getByRole("button", { name: /1/ });
+    await user.click(infinityButton);
+
+    expect(result.current.enchants.size).toBe(1);
+    expect(result.current.enchants.get("infinity")).toBe(1);
+
+    rerender(
+      <Selector
+        item={result.current.item}
+        enchants={result.current.enchants}
+        onChangeItem={handleChangeItem}
+        onChangeEnchant={handleChangeEnchantment}
+      />,
+    );
+
+    const mendingRow = rows.find((row) => within(row).queryByText("enchants.mending") != null);
+    expect(mendingRow).toBeDefined();
+    if (mendingRow === undefined) return; // Just to satisfy TypeScript
+
+    const mendingButton = within(mendingRow).getByRole("button", { name: /1/ });
+    await user.click(mendingButton);
+
+    expect(result.current.enchants.size).toBe(1);
+    expect(result.current.enchants.has("mending")).toBe(false);
+  });
 });
