@@ -27,4 +27,5 @@ export default defineConfig({
   define: {
     "import.meta.vitest": "undefined",
   },
+  base: "/enchant-cost-optimizer/",
 });
