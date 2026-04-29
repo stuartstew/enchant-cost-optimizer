@@ -1,6 +1,14 @@
+# Third-Party Licenses
+
+This project includes third-party dependencies with the following licenses:
+
+---
+
+## Tabler Icons
+
 MIT License
 
-Copyright (c) 2026 stuartstew
+Copyright (c) 2020-2026 Paweł Kuna
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
