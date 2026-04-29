@@ -2,9 +2,9 @@ import enchantDefinitions from "@/data/enchant-definitions.json";
 import type { Enchants } from "@/types/enchants";
 import type { OptimizationMode } from "@/types/optimization-mode";
 import type { Piece, Step } from "@/types/step";
-import { powerSet } from "./bitmask";
-import { cartesianProduct, cartesianSquare } from "./cartesian-product";
-import { min, range, sum } from "./common";
+import { powerSet } from "@/utils/bitmask";
+import { cartesianProduct, cartesianSquare } from "@/utils/cartesian-product";
+import { min, range, sum } from "@/utils/common";
 
 type InternalStep = {
   target: InternalPiece;

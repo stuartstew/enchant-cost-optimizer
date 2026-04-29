@@ -1,5 +1,5 @@
-import { buildEnchantPlan } from "@/utils/calculate";
 import type { WorkerRequest, WorkerResponse } from "./types";
+import { buildEnchantPlan } from "./utils";
 
 self.onmessage = (e: MessageEvent<WorkerRequest>) => {
   const { enchants, optimizationMode } = e.data;
