@@ -1,4 +1,4 @@
-import { act, cleanup, renderHook, screen } from "@testing-library/react";
+import { act, cleanup, renderHook, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it } from "vitest";
 import { render } from "@/test-utils";
@@ -12,17 +12,22 @@ beforeEach(() => {
 const user = userEvent.setup();
 
 describe("level toggle group", async () => {
-  it("should show an enchantment list when an item is selected", async () => {
+  it("should allow selecting items and enchantments", async () => {
     const { result } = renderHook(() => useSelector());
+    const handleChangeItem = (value: string | null) => act(() => result.current.changeItem(value));
+    const handleChangeEnchantment = (id: string, level: number) => act(() => result.current.changeEnchant(id, level));
 
     const { rerender } = render(
       <Selector
         item={result.current.item}
         enchants={result.current.enchants}
-        onChangeItem={(value) => act(() => result.current.changeItem(value))}
-        onChangeEnchant={(id, level) => act(() => result.current.changeEnchant(id, level))}
+        onChangeItem={handleChangeItem}
+        onChangeEnchant={handleChangeEnchantment}
       />,
     );
+
+    expect(result.current.item).toBe(null);
+    expect(result.current.enchants.size).toBe(0);
 
     const itemSelector = screen.getByRole("textbox", { name: "form.itemSelector.label" });
     await user.click(itemSelector);
@@ -36,11 +41,20 @@ describe("level toggle group", async () => {
       <Selector
         item={result.current.item}
         enchants={result.current.enchants}
-        onChangeItem={(value) => act(() => result.current.changeItem(value))}
-        onChangeEnchant={(id, level) => act(() => result.current.changeEnchant(id, level))}
+        onChangeItem={handleChangeItem}
+        onChangeEnchant={handleChangeEnchantment}
       />,
     );
 
-    screen.getByText("enchants.efficiency");
+    const rows = screen.getAllByRole("row");
+    const row = rows.find((row) => within(row).queryByText("enchants.unbreaking") != null);
+    expect(row).toBeDefined();
+    if (row === undefined) return; // Just to satisfy TypeScript
+
+    const button = within(row).getByRole("button", { name: /3/ });
+    await user.click(button);
+
+    expect(result.current.enchants.size).toBe(1);
+    expect(result.current.enchants.get("unbreaking")).toBe(3);
   });
 });
