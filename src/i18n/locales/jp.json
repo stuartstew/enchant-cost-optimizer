@@ -20,7 +20,7 @@
     "allowIncompatible": "競合するエンチャントを許可する",
     "optimizeFor": "最適化基準:",
     "optimizationModeLevel": "累積レベルを最小化",
-    "optimizationModePriorWork": "累積作業費用を最適化",
+    "optimizationModePriorWork": "累積作業費用を最小化",
     "tooManyEnchants": "{{enchantWithCount}} 個よりも多いエンチャントは許可されていません。",
     "enchantWithCount": "{{count}}"
   },
