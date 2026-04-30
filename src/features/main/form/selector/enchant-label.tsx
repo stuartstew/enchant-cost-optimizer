@@ -8,9 +8,15 @@ type Props = {
 
 export const EnchantLabel = ({ id, disabled }: Props) => {
   const { t } = useTranslation();
+  const color = disabled ? "var(--mantine-color-disabled)" : undefined;
   return (
-    <Text mr="xl" c={disabled ? "var(--mantine-color-disabled)" : undefined}>
-      {t(`enchants.${id}`)}
-    </Text>
+    <>
+      <Text hiddenFrom="sm" size="sm" mr="xs" c={color} data-testid="label-mobile">
+        {t(`enchants.${id}`)}
+      </Text>
+      <Text visibleFrom="sm" mr="xl" c={color} data-testid="label-desktop">
+        {t(`enchants.${id}`)}
+      </Text>
+    </>
   );
 };

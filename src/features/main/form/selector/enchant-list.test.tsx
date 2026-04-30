@@ -26,7 +26,10 @@ describe("level toggle group", async () => {
     expect(handleChangeEnchantment).not.toHaveBeenCalled();
 
     const rows = screen.getAllByRole("row");
-    const row = rows.find((row) => within(row).queryByText("enchants.unbreaking") != null);
+    const row = rows.find((row) => {
+      const desktopLabel = within(row).getByTestId("label-desktop");
+      return within(desktopLabel).queryByText("enchants.unbreaking") != null;
+    });
     expect(row).toBeDefined();
     if (row === undefined) return; // Just to satisfy TypeScript
 
