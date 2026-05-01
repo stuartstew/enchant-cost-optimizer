@@ -7,6 +7,18 @@
   <p align="center">A tool for Minecraft: Calculates the optimal order for combining enchantments on an anvil to save your XP.</p>
 </p>
 
+## Introduction
+
+In **Minecraft**, you can combine enchantments on items using an anvil.
+This operation consumes your XP,
+and the cost **varies significantly** depending on the order in which you combine the items.
+Each time you use an item in an anvil, its **prior work penalty** increases,
+which is imposed for future operations.
+Once the cost gets too high, the anvil refuses the operation and says "Too Expensive!".
+This tool allows you to find the optimal order for combining enchantments to minimize XP cost.
+
+> **Reference:** [Anvil mechanics – Minecraft Wiki](https://minecraft.wiki/w/Anvil_mechanics)
+
 ## How To Use
 
 1. Pick an item.
