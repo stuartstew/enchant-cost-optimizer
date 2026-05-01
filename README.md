@@ -5,7 +5,15 @@
   <br />
   <h1 align="center">Enchantment Cost Optimizer</h1>
   <p align="center">A tool for Minecraft: Calculates the optimal order for combining enchantments on an anvil to save your XP.</p>
+  <p align="center">
+    <a href="https://stuartstew.github.io/enchant-cost-optimizer/"><img src="https://img.shields.io/website?url=https%3A%2F%2Fstuartstew.github.io%2Fenchant-cost-optimizer%2F
+" alt="Website"></a>
+    <a href="https://github.com/stuartstew/enchant-cost-optimizer/blob/main/LICENSE"><img src="https://img.shields.io/github/license/stuartstew/enchant-cost-optimizer" alt="License"></a>
+    <a href="https://github.com/stuartstew/enchant-cost-optimizer/actions/workflows/ci.yml"><img src="https://github.com/stuartstew/enchant-cost-optimizer/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  </p>
 </p>
+
+---
 
 ## Introduction
 
