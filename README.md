@@ -1,6 +1,30 @@
-# Enchantment Cost Optimizer
+<p align="center">
+  <a href="https://stuartstew.github.io/enchant-cost-optimizer/">
+    <img width="128" src="./public/icon.svg" alt="Enchantment Cost Optimizer">
+  </a>
+  <br />
+  <h1 align="center">Enchantment Cost Optimizer</h1>
+  <p align="center">A tool for Minecraft: Calculates the optimal order for combining enchantments on an anvil to save your XP.</p>
+  <p align="center">
+    <a href="https://stuartstew.github.io/enchant-cost-optimizer/"><img src="https://img.shields.io/website?url=https%3A%2F%2Fstuartstew.github.io%2Fenchant-cost-optimizer%2F" alt="Website"></a>
+    <a href="https://github.com/stuartstew/enchant-cost-optimizer/blob/main/LICENSE"><img src="https://img.shields.io/github/license/stuartstew/enchant-cost-optimizer" alt="License"></a>
+    <a href="https://github.com/stuartstew/enchant-cost-optimizer/actions/workflows/ci.yml"><img src="https://github.com/stuartstew/enchant-cost-optimizer/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  </p>
+</p>
 
-A tool for Minecraft: Calculates the optimal order for combining enchantments on an anvil to save your XP.
+---
+
+## Introduction
+
+In **Minecraft**, you can combine enchantments on items using an anvil.
+This operation consumes your XP,
+and the cost **varies significantly** depending on the order in which you combine the items.
+Each time you use an item in an anvil, its **prior work penalty** increases,
+which is imposed for future operations.
+Once the cost gets too high, the anvil refuses the operation and says "Too Expensive!".
+This tool allows you to find the optimal order for combining enchantments to minimize XP cost.
+
+> **Reference:** [Anvil mechanics – Minecraft Wiki](https://minecraft.wiki/w/Anvil_mechanics)
 
 ## How To Use
 
