@@ -1,15 +1,14 @@
 /**
- * Returns all subsets of the given set (represented as a bitmask).
- * @param set a set represented as a bitmask.
+ * Returns all submasks of the given bitmask.
  */
-export function* powerSet(set: number) {
-  if (!Number.isSafeInteger(set) || set < 0) {
+export function* submasks(bitmask: number) {
+  if (!Number.isSafeInteger(bitmask) || bitmask < 0) {
     return;
   }
-  let subset = set;
-  while (subset >= 0) {
-    subset &= set;
-    yield subset;
-    subset--;
+  let submask = bitmask;
+  while (submask >= 0) {
+    submask &= bitmask;
+    yield submask;
+    submask--;
   }
 }

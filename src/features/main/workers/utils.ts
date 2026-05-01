@@ -2,7 +2,7 @@ import enchantDefinitions from "@/data/enchant-definitions.json";
 import type { Enchants } from "@/types/enchants";
 import type { OptimizationMode } from "@/types/optimization-mode";
 import type { Piece, Step } from "@/types/step";
-import { powerSet } from "@/utils/bitmask";
+import { submasks } from "@/utils/bitmask";
 import { cartesianProduct, cartesianSquare } from "@/utils/cartesian-product";
 import { min, range, sum } from "@/utils/common";
 
@@ -199,7 +199,7 @@ const updateDpTable = (dp: DpTable, kind: "book" | "item", resultEnchantBitmask:
   const target: InternalPiece = { ...DEFAULT_INTERNAL_PIECE, kind };
   const sacrifice: InternalPiece = { ...DEFAULT_INTERNAL_PIECE, kind: "book" };
 
-  for (target.enchantBitmask of powerSet(resultEnchantBitmask)) {
+  for (target.enchantBitmask of submasks(resultEnchantBitmask)) {
     sacrifice.enchantBitmask = resultEnchantBitmask & ~target.enchantBitmask;
     const enchantCostSum = sum(costs.filter((_, i) => sacrifice.enchantBitmask & (1 << i)));
 
