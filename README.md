@@ -1,6 +1,11 @@
-# Enchantment Cost Optimizer
-
-A tool for Minecraft: Calculates the optimal order for combining enchantments on an anvil to save your XP.
+<p align="center">
+  <a href="https://stuartstew.github.io/enchant-cost-optimizer/">
+    <img width="128" src="./public/icon.svg" alt="Enchantment Cost Optimizer">
+  </a>
+  <br />
+  <h1 align="center">Enchantment Cost Optimizer</h1>
+  <p align="center">A tool for Minecraft: Calculates the optimal order for combining enchantments on an anvil to save your XP.</p>
+</p>
 
 ## How To Use
 
