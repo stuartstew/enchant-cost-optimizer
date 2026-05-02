@@ -2,7 +2,7 @@ import enchantDefinitions from "@/data/enchant-definitions.json";
 import type { Enchants } from "@/types/enchants";
 import type { OptimizationMode } from "@/types/optimization-mode";
 import type { Piece, Step } from "@/types/step";
-import { powerSet } from "@/utils/bitmask";
+import { submasks } from "@/utils/bitmask";
 import { cartesianProduct, cartesianSquare } from "@/utils/cartesian-product";
 import { min, range, sum } from "@/utils/common";
 
@@ -99,8 +99,7 @@ const decodeEnchantIdsFromBitmask = (enchantBitmask: number, enchantIds: string[
 /**
  * Calculates the minimum cost table, and reconstruct the optimal
  * sequence for applying all enchantments to an item.
- * @param costs - An array of enchantment costs (level x enchantment multiplier),
- *   where each index corresponds to the enchantment's bit position in the bitmask.
+ * @param costs - An array of enchantment costs (level * enchantment multiplier)
  * @param optimizationMode - The criterion for optimization.
  * @returns One of the optimal sequences for applying all enchantments to an item,
  *   or `undefined` if no optimal sequences are found.
@@ -146,25 +145,31 @@ const reconstructOptimalSteps = (dp: DpTable, optimalSolution: Solution): Intern
 };
 
 /**
- * Calculates the minimum cost table using dynamic programming to find the optimal
- * sequence for applying all enchantments to an item.
+ * Calculates the minimum cost table using dynamic programming to find
+ * the optimal order for applying all enchantments to an item.
  *
- * ## Table Structure
- * The table is structured as `dp[kind][enchantBitmask][anvilUseCount]`, where each entry holds
- * the minimum cumulative cost and the corresponding anvil operation (`step`) needed
- * to produce a piece (item or enchanted book) satisfying the following conditions:
+ * # Overview
  *
- * - `kind`: The type of piece - `"item"` (the target item) or `"book"` (an enchanted book).
+ * This function efficiently finds the optimal steps using **dynamic programming (DP)** and **bitmasking**.
+ * We use a 3D DP table,
+ * where `dp[kind][enchantBitmask][anvilUseCount]` stores the solution for a piece (an item or a book)
+ * that satisfies following requirements:
+ * - `kind`: The type of the piece (`"item"` or `"book"`).
  * - `enchantBitmask`: A bitmask representing the set of enchantments on the piece.
- *   The i-th bit being `1` indicates that the i-th enchantment is present.
- * - `anvilUseCount`: The number of times this piece has been used in an anvil.
- *   Each anvil use increases the "prior work penalty", calculated as `2^anvilUseCount - 1` levels.
+ *   If the i-th bit is `1`, the piece has the i-th enchantment.
+ * - `anvilUseCount`: How many times the piece has been used on an anvil.
  *
- * @param costs - An array of enchantment costs (level x enchantment multiplier),
- *   where each index corresponds to the enchantment's bit position in the bitmask.
- * @returns The dynamic programming table. `dp.book[enchantBitmask][anvilUseCount]` holds entries
- *   for enchanted books and `dp.item[enchantBitmask][anvilUseCount]` for items.
- *   Unreachable states are represented as `undefined`.
+ * A solution includes the **minimum cumulative cost** of the piece,
+ * and the **final step** required in the anvil to obtain it at that cost.
+ * If there is no way to obtain the piece in an anvil, the solution will be `undefined`.
+ *
+ * # Complexity
+ *
+ * The time complexity is O(3ⁿ * (n + m²)) and the space complexity is O(2ⁿ * m),
+ * where n is the number of enchantments, and m is `MAX_ANVIL_USE_COUNT`.
+ *
+ * @param costs - An array of enchantment costs (level * enchantment multiplier).
+ * @returns The minimum cost table calculated using dynamic programming.
  */
 const minimumCostTable = (costs: number[]): DpTable => {
   const n = costs.length;
@@ -199,7 +204,7 @@ const updateDpTable = (dp: DpTable, kind: "book" | "item", resultEnchantBitmask:
   const target: InternalPiece = { ...DEFAULT_INTERNAL_PIECE, kind };
   const sacrifice: InternalPiece = { ...DEFAULT_INTERNAL_PIECE, kind: "book" };
 
-  for (target.enchantBitmask of powerSet(resultEnchantBitmask)) {
+  for (target.enchantBitmask of submasks(resultEnchantBitmask)) {
     sacrifice.enchantBitmask = resultEnchantBitmask & ~target.enchantBitmask;
     const enchantCostSum = sum(costs.filter((_, i) => sacrifice.enchantBitmask & (1 << i)));
 
