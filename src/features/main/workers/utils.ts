@@ -148,7 +148,7 @@ const reconstructOptimalSteps = (dp: DpTable, optimalSolution: Solution): Intern
  * Calculates the minimum cost table using dynamic programming to find
  * the optimal order for applying all enchantments to an item.
  *
- * # Overview
+ * ## Overview
  *
  * This function efficiently finds the optimal steps using **dynamic programming (DP)** and **bitmasking**.
  * We use a 3D DP table,
@@ -163,7 +163,7 @@ const reconstructOptimalSteps = (dp: DpTable, optimalSolution: Solution): Intern
  * and the **final step** required in the anvil to obtain it at that cost.
  * If there is no way to obtain the piece in an anvil, the solution will be `undefined`.
  *
- * # Complexity
+ * ## Complexity
  *
  * The time complexity is O(3ⁿ * (n + m²)) and the space complexity is O(2ⁿ * m),
  * where n is the number of enchantments, and m is `MAX_ANVIL_USE_COUNT`.
